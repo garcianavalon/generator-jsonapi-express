@@ -10,8 +10,10 @@ module.exports = Generator.extend({
 
   writing: function () {
     this.fs.copy(
-      this.templatePath('dummyfile.txt'),
-      this.destinationPath('dummyfile.txt')
+      // TODO(garcianavalon) copy all files in template folder automatically and
+      // not declaratively
+      //this.templatePath('dummyfile.txt'),
+      //this.destinationPath('dummyfile.txt')
     );
   },
 
