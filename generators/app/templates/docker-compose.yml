@@ -1,0 +1,13 @@
+version: '2'
+services:
+  your_service:
+    build: .
+    image: you/your_service
+    ports:
+      - "3000:3000"
+    environment:
+      - DEBUG=jsonapi:*
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: [nodemon]

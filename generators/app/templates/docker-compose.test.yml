@@ -1,0 +1,10 @@
+version: '2'
+services:
+  sut:
+    build: .
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=test
+    command: [npm, test]
