@@ -1,39 +1,37 @@
 // Stub handler for reference and starting point
+const BaseHandler = require('../base_handler');
 const debug = require('debug')('jsonapi:stub');
-const utils = require('../utils.js');
-const ACTIONS = require('../actions.js');
 
-const create = function(requestMessage, callback){
-  return callback({
-    'action_str': 'CREATED',
-    'data_type': 'stub',
-  });
-};
+module.exports = class Stub extends BaseHandler {
+  constructor(requestMessage, callback) {
+    super(requestMessage, callback);
+    
+    this.dataType = 'stub';
+    this.requiredParams = {
+      'create': [],
+      'retrieve': [],
+      'update': [],
+      'delete': [],
+    }
+  };
 
-const retrieve = function(requestMessage, callback){
-  return callback({
-    'action_str': 'RETRIEVED',
-    'data_type': 'stub',
-  });
+  create(){
+    // do your stuff
+    this.callback(this.responseMessage);
+  };
+
+  retrieve(){
+    // do your stuff
+    this.callback(this.responseMessage);
+  }
+
+  update(){
+    // do your stuff
+    this.callback(this.responseMessage);
+  };
+
+  delete(){
+    // do your stuff
+    this.callback(this.responseMessage);
+  };
 }
-
-const update = function(requestMessage, callback){
-  return callback({
-    'action_str': 'UPDATED',
-    'data_type': 'stub',
-  });
-};
-
-const delete = function(requestMessage, callback){
-  return callback({
-    'action_str': 'DELETED',
-    'data_type': 'stub',
-  });
-};
-
-module.exports.handler = function(requestMessage, callback){
-  return callback({
-    'action_str': 'DELETED',
-    'data_type': 'stub',
-  });
-};
