@@ -49,6 +49,9 @@
     "env": {
       "jest": true,
       "node": true
+    },
+    "rules": {
+      "camelcase": "off"
     }
   },
   "repository": "garcianavalon/generator-jsonapi-express",

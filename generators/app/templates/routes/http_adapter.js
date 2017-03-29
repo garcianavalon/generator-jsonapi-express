@@ -1,5 +1,7 @@
 const express = require('express');
+/* eslint-disable new-cap */
 const router = express.Router();
+/* eslint-enable new-cap */
 
 const paymentsCore = require('../core/core.js');
 
@@ -9,7 +11,7 @@ const paymentsCore = require('../core/core.js');
 // response with the API-compliant response message. All responses must use
 // HTTP 200 OK status code and a json response.
 
-router.post('/', function (req, res, next) {
+router.post('/', function (req, res) {
   // Extract message
   const requestMessage = req.body;
   // TODO(garcianavalon) record transaction in database

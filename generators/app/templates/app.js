@@ -3,8 +3,12 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 
-// TODO(garcianavalon) find a better place to connect to DB to speed up initialization
-const mongo = require('./config/db');
+if (process.env.NODE_ENV === 'test') {
+  console.warn('NODE_ENV environment variable is set to \'test\' so database connection will be skipped');
+} else {
+  // TODO(garcianavalon) find a better place/method to connect to DB to speed up initialization
+  require('./config/db');
+}
 
 const httpAdapter = require('./routes/http_adapter');
 
@@ -25,7 +29,7 @@ app.use(function (req, res, next) {
 });
 
 // Error handler
-app.use(function (err, req, res, next) {
+app.use(function (err, req, res) {
   // Set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
