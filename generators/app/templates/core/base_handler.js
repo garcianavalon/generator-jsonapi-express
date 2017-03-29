@@ -6,12 +6,12 @@ module.exports = class BaseHandler {
   constructor(requestMessage, callback) {
     this.requestMessage = requestMessage;
     this.callback = callback;
-  };
+  }
 
   // TODO(garcianavalon) this method should be async and accept a callback too
-  validateRequestData (requiredFields) {
+  validateRequestData(requiredFields) {
     const requestData = this.requestMessage.request_map;
-    for (let field of requiredFields){
+    for (let field of requiredFields) {
       if (field in requestData) {
         continue;
       }
@@ -22,7 +22,6 @@ module.exports = class BaseHandler {
       this.error(badRequestResponse, `${field} required in request_map`);
       return badRequestResponse;
     }
-    return;
   }
 
   _notImplemented() {
@@ -31,57 +30,57 @@ module.exports = class BaseHandler {
     serverErrorResponse.data_type = this.requestMessage.data_type;
     this.error(badRequestResponse, `${this.requestMessage.action} handler not implemented for data_type ${this.dataType}`);
     this.callback(badRequestResponse);
-  };
+  }
 
   log() {
 
-  };
+  }
 
   info() {
 
-  };
+  }
 
   warn() {
 
-  };
+  }
 
   error() {
 
-  };
+  }
 
-  create(){
-    this._notImplemented();
-  };
-
-  retrieve(){
+  create() {
     this._notImplemented();
   }
 
-  update(){
+  retrieve() {
     this._notImplemented();
-  };
+  }
 
-  delete(){
+  update() {
     this._notImplemented();
-  };
+  }
 
-  handle(){
+  delete() {
+    this._notImplemented();
+  }
+
+  handle() {
     const action = this.requestMessage.action_str;
 
     // Validate required params
     const errorResponse = this.validateRequestData(this.requiredParams[action]);
-    if(errorResponse){
+    if (errorResponse) {
       return this.callback(errorResponse);
     }
 
     const responseMessage = {
-      'data_type': this.dataType,
-      'log_list': [],
+      data_type: this.dataType,
+      log_list: []
     };
 
-    // store full transaction object
+    // Store full transaction object
     this.responseMessage = Object.assign(responseMessage, this.requestMessage.trans_map);
 
     return this[action]();
-  };
-}
+  }
+};

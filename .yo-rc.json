@@ -1,0 +1,9 @@
+{
+  "generator-node": {
+    "promptValues": {
+      "authorName": "Enrique Garcia Navalon",
+      "authorEmail": "garcianavalon@gmail.com",
+      "authorUrl": "garcianavalon.com"
+    }
+  }
+}

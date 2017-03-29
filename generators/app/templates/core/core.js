@@ -6,7 +6,7 @@ const dataHandlers = require('require-dir')('./data_handlers');
 debug(`Core handlers loaded ${dataHandlers}`);
 
 // Decide the appropiate handler module
-module.exports.processMessage = function(requestMessage, callback){
+module.exports.processMessage = function (requestMessage, callback) {
   debug(`Core processing message ${requestMessage}`);
   const dataType = requestMessage.data_type;
   // NOTE(garcianavalon) quick and simple implementation data_type == handler_module_name
@@ -15,4 +15,4 @@ module.exports.processMessage = function(requestMessage, callback){
 
   const handler = new dataHandlers[dataType](requestMessage, callback);
   handler.handle();
-}
+};

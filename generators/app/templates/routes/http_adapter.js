@@ -9,16 +9,16 @@ const paymentsCore = require('../core/core.js');
 // response with the API-compliant response message. All responses must use
 // HTTP 200 OK status code and a json response.
 
-router.post('/', function(req, res, next) {
+router.post('/', function (req, res, next) {
   // Extract message
   const requestMessage = req.body;
   // TODO(garcianavalon) record transaction in database
 
   // TODO(garcianavalon) validate structure
-  //http://json-schema.org/implementations.html#validator-javascript
+  // http://json-schema.org/implementations.html#validator-javascript
 
   // Procces message
-  paymentsCore.processMessage(requestMessage, function(responseMessage){
+  paymentsCore.processMessage(requestMessage, function (responseMessage) {
     // TODO(garcianavalon) record transaction in database
 
     // Send response

@@ -3,38 +3,34 @@ const sinon = require('sinon');
 
 const stub = require('../../../core/data_handlers/stub.js');
 
-
-describe('stub.js', function() {
+describe('stub.js', function () {
   beforeEach(function () {
-      this.sinon = sinon.sandbox.create();
+    this.sinon = sinon.sandbox.create();
   });
 
-  afterEach(function(){
+  afterEach(function () {
     this.sinon.restore();
   });
 
-  describe('create', function(){
+  describe('create', function () {
     const fakeRequest = {
-      'action_str': 'create',
-      'data_type': 'stub',
-      'request_map': {
-      },
+      action_str: 'create',
+      data_type: 'stub',
+      request_map: {
+      }
     };
-
   });
 
-  describe('retrieve', function(){
+  describe('retrieve', function () {
     const fakeRequest = {
-      'action_str': 'retrieve',
-      'data_type': 'stub',
-      'request_map': {
-      },
+      action_str: 'retrieve',
+      data_type: 'stub',
+      request_map: {
+      }
     };
-
   });
 
-  describe('delete', function(){
+  describe('delete', function () {
 
   });
-
 });

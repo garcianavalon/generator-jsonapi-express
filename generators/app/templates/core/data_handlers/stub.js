@@ -5,33 +5,33 @@ const debug = require('debug')('jsonapi:stub');
 module.exports = class Stub extends BaseHandler {
   constructor(requestMessage, callback) {
     super(requestMessage, callback);
-    
+
     this.dataType = 'stub';
     this.requiredParams = {
-      'create': [],
-      'retrieve': [],
-      'update': [],
-      'delete': [],
-    }
-  };
+      create: [],
+      retrieve: [],
+      update: [],
+      delete: []
+    };
+  }
 
-  create(){
-    // do your stuff
-    this.callback(this.responseMessage);
-  };
-
-  retrieve(){
-    // do your stuff
+  create() {
+    // Do your stuff
     this.callback(this.responseMessage);
   }
 
-  update(){
-    // do your stuff
+  retrieve() {
+    // Do your stuff
     this.callback(this.responseMessage);
-  };
+  }
 
-  delete(){
-    // do your stuff
+  update() {
+    // Do your stuff
     this.callback(this.responseMessage);
-  };
-}
+  }
+
+  delete() {
+    // Do your stuff
+    this.callback(this.responseMessage);
+  }
+};

@@ -1,23 +1,36 @@
 'use strict';
-var Generator = require('yeoman-generator');
-var chalk = require('chalk');
-var yosay = require('yosay');
+const Generator = require('yeoman-generator');
+const chalk = require('chalk');
+const yosay = require('yosay');
 
-module.exports = Generator.extend({
-  prompting: function () {
-    this.log('Generating your express project with JSON-pure API...');
-  },
+module.exports = class extends Generator {
+  prompting() {
+    // Have Yeoman greet the user.
+    this.log(yosay(
+      'Welcome to the striking ' + chalk.red('generator-jsonapi-express') + ' generator!'
+    ));
 
-  writing: function () {
+    const prompts = [{
+      type: 'confirm',
+      name: 'someAnswer',
+      message: 'Would you like to enable this option?',
+      default: true
+    }];
+
+    return this.prompt(prompts).then(props => {
+      // To access props later use this.props.someAnswer;
+      this.props = props;
+    });
+  }
+
+  writing() {
     this.fs.copy(
-      // TODO(garcianavalon) copy all files in template folder automatically and
-      // not declaratively
-      //this.templatePath('dummyfile.txt'),
-      //this.destinationPath('dummyfile.txt')
+      this.templatePath('dummyfile.txt'),
+      this.destinationPath('dummyfile.txt')
     );
-  },
+  }
 
-  install: function () {
+  install() {
     this.installDependencies();
   }
-});
+};
