@@ -1,4 +1,4 @@
-const transconsole = require('transaction-console');
+const transconsole = require('../transaction-console/transaction-console');
 const debug = require('debug')('jsonapi:core');
 
 // Get all the files in current dir
