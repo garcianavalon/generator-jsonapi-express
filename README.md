@@ -1,6 +1,7 @@
 # generator-jsonapi-express 
-[![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
-> Quickly bootstrap a JSON-pure API server using express with support to HTTP, WebSocket and AMQP protocols as transports.
+[![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
+
+Quickly bootstrap a JSON-pure API server using express with support to HTTP, WebSocket and AMQP protocols as transports.
 
 ## Installation
 
@@ -32,5 +33,3 @@ MIT © [Enrique Garcia Navalon](garcianavalon.com)
 [travis-url]: https://travis-ci.org/garcianavalon/generator-jsonapi-express
 [daviddm-image]: https://david-dm.org/garcianavalon/generator-jsonapi-express.svg?theme=shields.io
 [daviddm-url]: https://david-dm.org/garcianavalon/generator-jsonapi-express
-[coveralls-image]: https://coveralls.io/repos/github/garcianavalon/generator-jsonapi-express/badge.svg?branch=master
-[coveralls-url]: https://coveralls.io/github/garcianavalon/generator-jsonapi-express?branch=master
