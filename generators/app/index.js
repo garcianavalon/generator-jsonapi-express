@@ -7,7 +7,7 @@ module.exports = class extends Generator {
   prompting() {
     // Have Yeoman greet the user.
     this.log(yosay(
-      'Welcome to the striking ' + chalk.red('generator-jsonapi-express') + ' generator!'
+      'Welcome to the striking ' + chalk.red('jsonapi-express') + ' generator!'
     ));
 
     const prompts = [{
@@ -44,7 +44,7 @@ module.exports = class extends Generator {
     return this.prompt(prompts).then(props => {
       // To access props later use this.props.someAnswer;
       this.props = props;
-      this.log('Nice! Generating ', props.name);
+      this.log('Nice! Generating %s structure ...', props.service_name);
     });
   }
 

@@ -1,6 +1,6 @@
 FROM node:6.2.2
 
-MAINTAINER <%= author %>
+MAINTAINER <%- author %>
 
 EXPOSE 3000
 CMD [ "npm", "start"]
