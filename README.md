@@ -1,5 +1,5 @@
 # generator-jsonapi-express [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
-> Quickly bootstrap a JSON-pure API server using express with support to both HTTP and WebSocket protocols
+> Quickly bootstrap a JSON-pure API server using express with support to HTTP, WebSocket and AMQP protocols as transports.
 
 ## Installation
 
