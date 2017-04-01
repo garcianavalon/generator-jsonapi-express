@@ -1,18 +1,17 @@
-const assert = require('power-assert');
-const paymentsCore = require('../../core/core.js');
+const core = require('../../core/core.js');
 
-describe('core.js', function () {
-  // NOTE(garcianavalon) if the stub is imported and works, we can infer the others modules too...
+// NOTE(garcianavalon) if it works for stub data_type, we can infer that the
+// other data_types work too
 
-  it('should delegate create messages to correct core module', function (done) {
-    const fakeRequest = {
-      action_str: 'create',
-      data_type: 'stub'
-    };
-    paymentsCore.processMessage(fakeRequest, function (responseMessage) {
-      assert(responseMessage.data_type === 'stub');
-      assert(responseMessage.action_str === 'CREATED');
-      done();
-    });
-  });
+test('core delegates create messages to correct handler', done => {
+  function cb(response) {
+    expect(response.data_type).toBe('stub');
+    expect(response.action_str).toBe('CREATED');
+    done();
+  }
+  const request = {
+    action_str: 'create',
+    data_type: 'stub'
+  };
+  core.processMessage(request, cb);
 });

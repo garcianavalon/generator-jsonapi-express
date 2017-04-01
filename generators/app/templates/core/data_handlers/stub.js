@@ -3,10 +3,10 @@ const BaseHandler = require('../base_handler');
 const debug = require('debug')('jsonapi:stub');
 
 module.exports = class Stub extends BaseHandler {
-  constructor(requestMessage, callback) {
-    super(requestMessage, callback);
+  constructor(requestMessage, callback, silent) {
+    super(requestMessage, callback, silent);
 
-    this.dataType = 'stub';
+    this.response.data_type = 'stub';
     this.requiredParams = {
       create: [],
       retrieve: [],
@@ -17,21 +17,25 @@ module.exports = class Stub extends BaseHandler {
 
   create() {
     // Do your stuff
-    this.callback(this.responseMessage);
+    debug('Stub handler for create action executed');
+    this.success();
   }
 
   retrieve() {
     // Do your stuff
-    this.callback(this.responseMessage);
+    debug('Stub handler for retrie action executed');
+    this.success();
   }
 
   update() {
     // Do your stuff
-    this.callback(this.responseMessage);
+    debug('Stub handler for update action executed');
+    this.success();
   }
 
   delete() {
     // Do your stuff
-    this.callback(this.responseMessage);
+    debug('Stub handler for delete action executed');
+    this.success();
   }
 };

@@ -1,9 +1,4 @@
-const assert = require('power-assert');
-
-describe('app.js', function () {
-  it('should start with no errors', function (done) {
-    const app = require('../app');
-    assert(app);
-    done();
-  });
+test('app.js starts with no errors', () => {
+  const app = require('../app');
+  expect(app).toBeDefined();
 });

@@ -1,18 +1,22 @@
-const transconsole = require('../transaction-console/transaction-console');
+// Const transconsole = require('../transaction-console/transaction-console');
 const debug = require('debug')('jsonapi:core');
+const fs = require('fs');
 
-// Get all the files in current dir
-const dataHandlers = require('require-dir')('./data_handlers');
+// Get all the data_handlers
+const files = fs.readdirSync(`${__dirname}/data_handlers`);
+const dataHandlers = {};
+for (let file of files) {
+  dataHandlers[file.replace('.js', '')] = require(`${__dirname}/data_handlers/${file}`);
+}
 debug(`Core handlers loaded ${dataHandlers}`);
 
 // Decide the appropiate handler module
-module.exports.processMessage = function (requestMessage, callback) {
-  debug(`Core processing message ${requestMessage}`);
-  const dataType = requestMessage.data_type;
+module.exports.processMessage = function (request, callback) {
+  debug(`Core processing message ${request}`);
+  const dataType = request.data_type;
   // NOTE(garcianavalon) quick and simple implementation data_type == handler_module_name
   // A more complex solution may be required in the future
   debug(`Delegating to handler ${dataType}`);
-
-  const handler = new dataHandlers[dataType](requestMessage, callback);
+  const handler = new dataHandlers[dataType](request, callback);
   handler.handle();
 };

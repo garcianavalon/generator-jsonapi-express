@@ -14,5 +14,6 @@ module.exports = {
   delete: {
     success: 'DELETED',
     failure: 'DELETE_FAIL'
-  }
+  },
+  error: 'ACTION_ERROR'
 };

@@ -1,6 +1,6 @@
 {
   "name": "your_service",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "description": "Your service",
   "keywords": [],
@@ -17,17 +17,30 @@
     "require-dir": "0.3.1"
   },
   "devDependencies": {
-    "intelli-espower-loader": "1.0.1",
-    "mocha": "2.5.2",
-    "pow-mongodb-fixtures": "0.12.0",
-    "power-assert": "1.4.1",
-    "reqres": "1.2.2",
-    "supertest": "1.2.0"
+    "nsp": "^2.6.3",
+    "eslint": "^3.18.0",
+    "eslint-config-xo-space": "^0.16.0",
+    "jest": "^19.0.2",
+    "jest-cli": "^19.0.1"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "eslintConfig": {
+    "extends": "xo-space",
+    "env": {
+      "jest": true,
+      "node": true
+    },
+    "rules": {
+      "camelcase": "off"
+    }
   },
   "scripts": {
     "start": "node app.js",
-    "test": "mocha --require intelli-espower-loader test/*.test.js test/**/*.test.js test/**/**/*.test.js",
-    "mocha": "mocha --require intelli-espower-loader"
+    "prepublish": "nsp check",
+    "pretest": "eslint . --ignore-path .gitignore --fix",
+    "test": "jest"
   },
   "directories": {
     "test": "test/"

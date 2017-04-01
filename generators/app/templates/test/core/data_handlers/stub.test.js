@@ -1,36 +1,33 @@
-const assert = require('power-assert');
-const sinon = require('sinon');
+const Stub = require('../../../core/data_handlers/stub.js');
 
-const stub = require('../../../core/data_handlers/stub.js');
+function _testHandlerForAction(action) {
+  function cb(response) {
+    expect(response).toBeDefined();
+  }
+  const stub = new Stub({action_str: action}, cb, true);
+  stub.handle();
+}
 
-describe('stub.js', function () {
-  beforeEach(function () {
-    this.sinon = sinon.sandbox.create();
+describe('create', () => {
+  test('create succeded', () => {
+    _testHandlerForAction('create');
   });
+});
 
-  afterEach(function () {
-    this.sinon.restore();
+describe('retrieve', () => {
+  test('retrieve', () => {
+    _testHandlerForAction('retrieve');
   });
+});
 
-  describe('create', function () {
-    const fakeRequest = {
-      action_str: 'create',
-      data_type: 'stub',
-      request_map: {
-      }
-    };
+describe('update', () => {
+  test('update', () => {
+    _testHandlerForAction('update');
   });
+});
 
-  describe('retrieve', function () {
-    const fakeRequest = {
-      action_str: 'retrieve',
-      data_type: 'stub',
-      request_map: {
-      }
-    };
-  });
-
-  describe('delete', function () {
-
+describe('delete', () => {
+  test('delete', () => {
+    _testHandlerForAction('delete');
   });
 });

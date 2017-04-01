@@ -1,88 +1,77 @@
-const transconsole = require('../transaction-console/transaction-console');
+const Transconsole = require('./transconsole');
 const debug = require('debug')('jsonapi:stub');
-const ACTIONS = require('../actions.js');
+const ACTIONS = require('../config/actions');
 
-module.exports = class BaseHandler {
-  constructor(requestMessage, callback) {
-    this.requestMessage = requestMessage;
-    this.callback = callback;
+module.exports = class BaseHandler extends Transconsole {
+  constructor(requestMessage, callback, silent) {
+    super(requestMessage, silent);
+    this._callback = callback;
+
+    // This should be overrided by action_handlers
+    this.response.data_type = 'base_handler';
+    this.requiredFields = [];
   }
 
-  // TODO(garcianavalon) this method should be async and accept a callback too
-  validateRequestData(requiredFields) {
-    const requestData = this.requestMessage.request_map;
-    for (let field of requiredFields) {
+  _getResponseActionString(status) {
+    if (!this.request || !this.request.action_str || !ACTIONS[this.request.action_str]) {
+      return ACTIONS.error;
+    }
+    return ACTIONS[this.request.action_str][status];
+  }
+
+  success() {
+    this.response.action_str = this._getResponseActionString('success');
+    this._callback(this.response);
+  }
+
+  failure() {
+    this.response.action_str = this._getResponseActionString('failure');
+    this._callback(this.response);
+  }
+
+  _validateRequestData() {
+    const requestData = this.response.request_map;
+
+    for (let field of this.requiredFields) {
       if (field in requestData) {
         continue;
       }
-      debug(`${field} missing in request_map for request ${this.requestMessage}`);
-      const badRequestResponse = {
-        action_str: ACTIONS[this.requestMessage.action_str].failure,
-        data_type: this.requestMessage.data_type
-      };
-      this.error(badRequestResponse, `${field} required in request_map`);
-      return badRequestResponse;
+      debug(`${field} missing in request_map for request ${this.response}`);
+      this.error(`${field} required in request_map`);
+      return true;
     }
+
+    return false;
   }
 
-  _notImplemented() {
-    const serverErrorResponse = {
-      action_str: ACTIONS[this.requestMessage.action_str].failure,
-      data_type: this.requestMessage.data_type
-    };
-    this.error(serverErrorResponse, `${this.requestMessage.action} handler not implemented for data_type ${this.dataType}`);
-    this.callback(badRequestResponse);
-  }
-
-  log() {
-
-  }
-
-  info() {
-
-  }
-
-  warn() {
-
-  }
-
-  error() {
-
+  _notImplemented(action) {
+    this.error(`${action} handler not implemented for data_type ${this.response.data_type}`);
+    this.failure();
   }
 
   create() {
-    this._notImplemented();
+    this._notImplemented('create');
   }
 
   retrieve() {
-    this._notImplemented();
+    this._notImplemented('retrieve');
   }
 
   update() {
-    this._notImplemented();
+    this._notImplemented('update');
   }
 
   delete() {
-    this._notImplemented();
+    this._notImplemented('delete');
   }
 
   handle() {
-    const action = this.requestMessage.action_str;
-
     // Validate required params
-    const errorResponse = this.validateRequestData(this.requiredParams[action]);
-    if (errorResponse) {
-      return this.callback(errorResponse);
+    const error = this._validateRequestData();
+    if (error) {
+      return this.failure();
     }
-
-    const responseMessage = {
-      data_type: this.dataType,
-      log_list: []
-    };
-
-    // Store full transaction object
-    this.responseMessage = Object.assign(responseMessage, this.requestMessage.trans_map);
-
-    return this[action]();
+    const action = this.request.action_str;
+    this[action]();
   }
 };
