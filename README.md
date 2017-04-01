@@ -35,5 +35,5 @@ MIT © [Enrique Garcia Navalon](garcianavalon.com)
 [travis-url]: https://travis-ci.org/garcianavalon/generator-jsonapi-express
 [daviddm-image]: https://david-dm.org/garcianavalon/generator-jsonapi-express.svg?theme=shields.io
 [daviddm-url]: https://david-dm.org/garcianavalon/generator-jsonapi-express
-[coveralls-image]: https://coveralls.io/repos/garcianavalon/generator-jsonapi-express/badge.svg
-[coveralls-url]: https://coveralls.io/r/garcianavalon/generator-jsonapi-express
+[coveralls-image]: https://coveralls.io/repos/github/garcianavalon/generator-jsonapi-express/badge.svg?branch=master
+[coveralls-url]: https://coveralls.io/github/garcianavalon/generator-jsonapi-express?branch=master
