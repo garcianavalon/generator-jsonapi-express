@@ -28,9 +28,6 @@ yo jsonapi-express
 
 MIT © [Enrique Garcia Navalon](garcianavalon.com)
 
-
-[npm-image]: https://badge.fury.io/js/generator-jsonapi-express.svg
-[npm-url]: https://npmjs.org/package/generator-jsonapi-express
 [travis-image]: https://travis-ci.org/garcianavalon/generator-jsonapi-express.svg?branch=master
 [travis-url]: https://travis-ci.org/garcianavalon/generator-jsonapi-express
 [daviddm-image]: https://david-dm.org/garcianavalon/generator-jsonapi-express.svg?theme=shields.io
