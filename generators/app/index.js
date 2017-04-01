@@ -12,9 +12,33 @@ module.exports = class extends Generator {
 
     const prompts = [{
       type: 'input',
-      name: 'name',
-      message: 'Your service name',
+      name: 'service_name',
+      message: 'Your service name, in snake_case',
       default: this.appname // Default to current folder name
+    },
+    {
+      type: 'input',
+      name: 'description',
+      message: 'A short description',
+      default: 'An amazing service'
+    },
+    {
+      type: 'input',
+      name: 'author',
+      message: 'How is the author? Format: Your Name <your email>',
+      store: true
+    },
+    {
+      type: 'input',
+      name: 'github_user',
+      message: 'What\'s your Github username?',
+      store: true
+    },
+    {
+      type: 'input',
+      name: 'docker_user',
+      message: 'What\'s your Docker Hub username?',
+      store: true
     }];
 
     return this.prompt(prompts).then(props => {
@@ -25,16 +49,23 @@ module.exports = class extends Generator {
   }
 
   writing() {
-    const source = this.sourceRoot();
-    const destination = this.destinationRoot();
-    this.fs.copy(
-      source + '/**',
-      destination,
-      {
-        globOptions: {
-          dot: true
-        }
+    // Copy all templates and files
+    this.fs.copyTpl(
+      this.sourceRoot() + '/**',
+      this.destinationRoot(),
+      this.props
+    );
+    // NOTE(garcianavalon) I don't know why copyTpl doesn't give a shit about
+    // globOptions. This copies hidden files like .gitignore
+    const copyOptions = {
+      globOptions: {
+        dot: true
       }
+    };
+    this.fs.copy(
+      this.sourceRoot() + '/.*',
+      this.destinationRoot(),
+      copyOptions
     );
   }
 

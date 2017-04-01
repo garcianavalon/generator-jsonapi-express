@@ -1,10 +1,10 @@
 {
-  "name": "your_service",
+  "name": "<%= service_name %>",
   "version": "0.2.0",
   "private": true,
-  "description": "Your service",
+  "description": "<%= description %>",
   "keywords": [],
-  "author": "you",
+  "author": "<%= author %>",
   "license": "MIT",
   "main": "app.js",
   "dependencies": {
@@ -49,10 +49,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/you/your_service.git"
+    "url": "git+https://github.com/<%= github_user %>/<%= service_name %>.git"
   },
   "bugs": {
-    "url": "https://github.com/you/your_service/issues"
+    "url": "https://github.com/<%= github_user %>/<%= service_name %>/issues"
   },
-  "homepage": "https://github.com/you/your_service#readme"
+  "homepage": "https://github.com/<%= github_user %>/<%= service_name %>#readme"
 }

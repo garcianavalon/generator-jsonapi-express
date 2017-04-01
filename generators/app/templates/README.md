@@ -1,5 +1,7 @@
-# your_service
-Your Service
+# <%= service_name %> Docs
+Welcome to the amazing <%= service_name %> docs!
+
+<%= description %>
 
 ## Understanding the API
 
@@ -60,13 +62,13 @@ Confirmations are sent from a client to a server to confirm a response has been 
 }
 ```
 
-## Runinng tests
+## Running tests
 ```
 $ docker-compose -f docker-compose.test.yml run --rm sut
 ```
 If you need to see debugging traces, use the `DEBUG` environment variable as normally.
 ```
-$ docker-compose -f docker-compose.test.yml run --rm -e DEBUG=payments:[namespace|*] sut
+$ docker-compose -f docker-compose.test.yml run --rm -e DEBUG=<%= service_name %>:[namespace|*] sut
 ```
 To run a specific test use the `npm run mocha` command. Check [this article](http://jaketrent.com/post/run-single-mocha-test/)
 for tricks on choosing your test.

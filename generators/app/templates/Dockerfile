@@ -1,17 +1,15 @@
 FROM node:6.2.2
 
-# TODO(garcianavalon) parametrize MAINTAINER in generator
-# MAINTAINER Enrique Garcia Navalon <garcianavalon@gmail.com>
+MAINTAINER <%= author %>
+
+EXPOSE 3000
+CMD [ "npm", "start"]
 
 # Our app directory
 WORKDIR /app
 
 # nodemon for live reloading in development
 RUN npm install -gq nodemon
-
-EXPOSE 3000
-
-CMD [ "npm", "start"]
 
 # use changes to package.json to force Docker not to use the cache
 # when we change our application's nodejs dependencies:

@@ -1,12 +1,12 @@
 version: '2'
 services:
-  your_service:
+  <%= service_name %>:
     build: .
-    image: you/your_service
+    image: <%= docker_user %>/<%= service_name %>
     ports:
       - "3000:3000"
     environment:
-      - DEBUG=jsonapi:*
+      - DEBUG=<%= service_name %>:*
     volumes:
       - .:/app
       - /app/node_modules
