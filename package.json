@@ -24,7 +24,6 @@
   "devDependencies": {
     "yeoman-test": "^1.6.0",
     "yeoman-assert": "^3.0.0",
-    "coveralls": "^2.12.0",
     "nsp": "^2.6.3",
     "eslint": "^3.18.0",
     "eslint-config-xo-space": "^0.16.0",
@@ -48,7 +47,7 @@
   "scripts": {
     "prepublish": "nsp check",
     "pretest": "eslint . --ignore-path .gitignore --fix",
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "eslintConfig": {
     "extends": "xo-space",
