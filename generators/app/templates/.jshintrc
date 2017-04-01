@@ -1,8 +1,0 @@
-{
-  "boss":      true,
-  "node":      true,
-  "eqeqeq":    true,
-  "undef":     true,
-  "unused":    true,
-  "esversion": 6
-}
