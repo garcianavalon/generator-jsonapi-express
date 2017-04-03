@@ -36,7 +36,7 @@
     }
   },
   "scripts": {
-    "start": "node app.js",
+    "start": "node ./bin/www",
     "prepublish": "nsp check",
     "pretest": "eslint . --ignore-path .gitignore --fix",
     "test": "jest"
