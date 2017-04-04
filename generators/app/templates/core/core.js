@@ -17,13 +17,13 @@ module.exports.processMessage = function (request, callback) {
   // NOTE(garcianavalon) quick and simple implementation data_type == handler_module_name
   // A more complex solution may be required in the future
   const Handler = dataHandlers[dataType];
-  debug(`Delegating to handler ${Handler.name}`);
   if (!Handler) {
     // TODO(garcianavalon) better error handling
     return callback({
       error: `There is no handler for ${dataType}`
     });
   }
+  debug(`Delegating to handler ${Handler.name}`);
   const handler = new Handler(request, callback);
   handler.handle();
 };
