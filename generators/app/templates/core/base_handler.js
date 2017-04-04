@@ -19,12 +19,14 @@ module.exports = class BaseHandler extends Transconsole {
     return ACTIONS[this.request.action_str][status];
   }
 
-  success() {
+  success(msg) {
+    this.info(msg);
     this.response.action_str = this._getResponseActionString('success');
     this._callback(this.response);
   }
 
-  failure() {
+  failure(err) {
+    this.error(err);
     this.response.action_str = this._getResponseActionString('failure');
     this._callback(this.response);
   }

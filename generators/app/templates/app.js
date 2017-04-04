@@ -3,13 +3,6 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 
-if (process.env.NODE_ENV === 'test') {
-  console.warn('NODE_ENV environment variable is set to \'test\' so database connection will be skipped');
-} else {
-  // TODO(garcianavalon) find a better place/method to connect to DB to speed up initialization
-  require('./config/db');
-}
-
 const httpAdapter = require('./routes/http_adapter');
 
 const app = express();
