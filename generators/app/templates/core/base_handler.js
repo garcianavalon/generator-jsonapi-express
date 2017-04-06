@@ -1,14 +1,16 @@
 const Transconsole = require('./transconsole');
-const debug = require('debug')('<%= service_name %>:base_handler');
 const ACTIONS = require('../config/actions');
+const debug = require('debug')('<%= service_name %>:base_handler');
 
 module.exports = class BaseHandler extends Transconsole {
-  constructor(requestMessage, callback, silent) {
-    super(requestMessage, silent);
+  constructor(request, callback, silent) {
+    super(request, silent);
     this._callback = callback;
 
-    // This should be overrided by action_handlers
-    this.response.data_type = 'base_handler';
+    if (!this.response.data_type) {
+      // TODO(garcianavalon) snake_case this
+      this.response.data_type = this.name;
+    }
     this.requiredFields = [];
   }
 

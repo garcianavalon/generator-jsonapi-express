@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 /* eslint-enable new-cap */
 
-const core = require('../core/core.js');
+const CoreHandler = require('../core/core_handler.js');
 
 // NOTE(garcianavalon) This layer functions as a HTTP/REST adapter to our core.
 // It's function is to process the request to extract the API-compliant message,
@@ -12,14 +12,13 @@ const core = require('../core/core.js');
 // HTTP 200 OK status code and a json response.
 
 router.post('/', function (req, res) {
-  // Extract message
-  const requestMessage = req.body;
+  const core = new CoreHandler(req.body, function (response) {
+    // Send response
+    res.status(200).json(response);
+  });
 
   // Procces message
-  core.processMessage(requestMessage, function (responseMessage) {
-    // Send response
-    res.status(200).json(responseMessage);
-  });
+  core.handle();
 });
 
 module.exports = router;

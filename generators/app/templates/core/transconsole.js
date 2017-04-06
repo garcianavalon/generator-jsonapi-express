@@ -7,13 +7,16 @@ console.debug = console.log;
 
 module.exports = class Transconsole {
 
-  constructor(requestMessage, silent) {
+  constructor(request, silent) {
     this.silent = silent;
 
-    this.request = requestMessage || {};
+    this.request = request || {};
+
     this.response = {
-      log_list: []
+      log_list: [],
+      data_type: this.request.data_type
     };
+
     // Store full transaction object
     this.response.trans_map = this.request.trans_map || {};
   }

@@ -11,7 +11,7 @@ describe('generator-jsonapi-express:app', () => {
 
   it('creates files', () => {
     assert.file([
-      'core/core.js',
+      'core/core_handler.js',
       'core/base_handler.js',
       'core/transconsole.js',
       'data_handlers/stub.js',
@@ -19,7 +19,7 @@ describe('generator-jsonapi-express:app', () => {
       'config/db.js',
       'bin/www',
       'adapters/http.js',
-      'test/core/core.test.js',
+      'test/core/core_handler.test.js',
       'test/core/base_handler.test.js',
       'test/core/transconsole.test.js',
       'test/data_handlers/stub.test.js',
