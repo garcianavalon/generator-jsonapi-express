@@ -1,6 +1,6 @@
 const uuidV4 = require('uuid/v4');
 const util = require('util');
-const debug = require('debug')('transconsole');
+const debug = require('debug')('<%= service_name %>:transconsole');
 
 // NOTE(garcianavalon) dirty hack for convenience
 console.debug = console.log;

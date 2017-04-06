@@ -1,4 +1,4 @@
-const Stub = require('../../../core/data_handlers/stub.js');
+const Stub = require('../../data_handlers/stub.js');
 
 function _testHandlerForAction(action) {
   function cb(response) {

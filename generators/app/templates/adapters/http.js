@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 /* eslint-enable new-cap */
 
-const paymentsCore = require('../core/core.js');
+const core = require('../core/core.js');
 
 // NOTE(garcianavalon) This layer functions as a HTTP/REST adapter to our core.
 // It's function is to process the request to extract the API-compliant message,
@@ -14,15 +14,9 @@ const paymentsCore = require('../core/core.js');
 router.post('/', function (req, res) {
   // Extract message
   const requestMessage = req.body;
-  // TODO(garcianavalon) record transaction in database
-
-  // TODO(garcianavalon) validate structure
-  // http://json-schema.org/implementations.html#validator-javascript
 
   // Procces message
-  paymentsCore.processMessage(requestMessage, function (responseMessage) {
-    // TODO(garcianavalon) record transaction in database
-
+  core.processMessage(requestMessage, function (responseMessage) {
     // Send response
     res.status(200).json(responseMessage);
   });

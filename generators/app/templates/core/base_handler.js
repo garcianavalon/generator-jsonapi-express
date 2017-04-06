@@ -1,5 +1,5 @@
 const Transconsole = require('./transconsole');
-const debug = require('debug')('jsonapi:stub');
+const debug = require('debug')('<%= service_name %>:base_handler');
 const ACTIONS = require('../config/actions');
 
 module.exports = class BaseHandler extends Transconsole {

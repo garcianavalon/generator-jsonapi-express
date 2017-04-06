@@ -3,7 +3,7 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 
-const httpAdapter = require('./routes/http_adapter');
+const httpAdapter = require('./adapters/http');
 
 const app = express();
 

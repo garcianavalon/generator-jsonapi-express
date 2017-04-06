@@ -1,6 +1,6 @@
 {
   "name": "generator-jsonapi-express",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Quickly bootstrap a JSON-pure API server using express with support to both HTTP and WebSocket protocols",
   "homepage": "https://github.com/garcianavalon/generator-jsonapi-express",
   "author": {
