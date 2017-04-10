@@ -34,7 +34,7 @@ module.exports = class BaseHandler extends Transconsole {
   }
 
   _validateRequestData() {
-    const requestData = this.response.request_map;
+    const requestData = this.request.request_map;
     const action = this.request.action_str;
 
     if (!action) {
