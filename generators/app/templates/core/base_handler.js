@@ -22,13 +22,17 @@ module.exports = class BaseHandler extends Transconsole {
   }
 
   success(msg) {
-    this.info(msg);
+    if (msg) {
+      this.info(msg);
+    }
     this.response.action_str = this._getResponseActionString('success');
     this._callback(this.response);
   }
 
   failure(err) {
-    this.error(err);
+    if (err) {
+      this.error(err);
+    }
     this.response.action_str = this._getResponseActionString('failure');
     this._callback(this.response);
   }
