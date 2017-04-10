@@ -14,11 +14,10 @@ module.exports = class Transconsole {
 
     this.response = {
       log_list: [],
-      data_type: this.request.data_type
+      data_type: this.request.data_type,
+      response_map: {},
+      trans_map: this.request.trans_map || {} // Store full transaction object
     };
-
-    // Store full transaction object
-    this.response.trans_map = this.request.trans_map || {};
   }
 
   _getTransactionId() {

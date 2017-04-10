@@ -9,9 +9,9 @@ module.exports = class BaseHandler extends Transconsole {
 
     if (!this.response.data_type) {
       // TODO(garcianavalon) snake_case this
-      this.response.data_type = this.name;
+      this.response.data_type = this.constructor.name;
     }
-    this.requiredFields = [];
+    this.requiredFields = {};
   }
 
   _getResponseActionString(status) {
@@ -35,12 +35,19 @@ module.exports = class BaseHandler extends Transconsole {
 
   _validateRequestData() {
     const requestData = this.response.request_map;
+    const action = this.request.action_str;
 
-    for (let field of this.requiredFields) {
+    if (!action) {
+      debug(`missing action_str in request ${this.request}`);
+      this.error(`action_str is required in request`);
+      return true;
+    }
+
+    for (let field of this.requiredFields[action]) {
       if (field in requestData) {
         continue;
       }
-      debug(`${field} missing in request_map for request ${this.response}`);
+      debug(`${field} missing in request_map for request ${this.request}`);
       this.error(`${field} required in request_map`);
       return true;
     }

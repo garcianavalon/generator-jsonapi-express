@@ -3,11 +3,10 @@ const BaseHandler = require('../core/base_handler');
 const debug = require('debug')('<%= service_name %>:stub');
 
 module.exports = class Stub extends BaseHandler {
-  constructor(requestMessage, callback, silent) {
-    super(requestMessage, callback, silent);
+  constructor(request, callback, silent) {
+    super(request, callback, silent);
 
-    this.response.data_type = 'stub';
-    this.requiredParams = {
+    this.requiredFields = {
       create: [],
       retrieve: [],
       update: [],
